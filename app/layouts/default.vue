@@ -6,7 +6,7 @@
       <NuxtLink to="/">🎬 MovieApp</NuxtLink>
       <nav>
         <NuxtLink to="/" class="mr-4">Home</NuxtLink>
-        <NuxtLink to="/about/1">About</NuxtLink>
+        <!-- <NuxtLink to="/about/1">About</NuxtLink> -->
       </nav>
     </header>
 

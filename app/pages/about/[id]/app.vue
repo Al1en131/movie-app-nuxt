@@ -19,7 +19,7 @@
 const route = useRoute();
 const config = useRuntimeConfig();
 const { data: movie } = await useFetch(
-  `https://api.themoviedb.org/3/movie/${route.params.id}?api_key=${config.public.movieApiKey}`
+  `https://api.themoviedb.org/3/movie/${route.params.id}?language=en-US`
 );
 </script>
 
