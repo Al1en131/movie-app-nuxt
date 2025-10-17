@@ -1,3 +1,8 @@
+# Detail Project
+
+This website provides information about the top 10 most popular movies, allowing users to explore each film in more detail, including its synopsis, cast, and ratings.
+When you select a movie, the site also shows a list of similar titles, helping you discover more films that match your interests. The goal is to offer an engaging and easy way to explore and learn more about trending movies.
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
