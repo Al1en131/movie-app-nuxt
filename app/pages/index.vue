@@ -14,7 +14,7 @@
 
     <section class="about">
       <div class="about-content">
-        <h2>About This Website</h2>
+        <h2>About</h2>
         <p>
           This website provides information about the top 10 most popular
           movies, allowing users to explore each film in more detail, including
@@ -237,20 +237,24 @@ h1 {
 
 .about-content {
   max-width: 800px;
+  padding: 4rem ;
+  background-color: rgba(115, 45, 61, 0.9);
   margin: 0 auto;
+  border-radius: 20px;
 }
 
 .about h2 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: rgba(115, 45, 61, 0.9);
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  color: #df9f97;
 }
 
 .about p {
   font-size: 1.1rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .item h2 {
