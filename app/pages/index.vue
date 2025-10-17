@@ -13,26 +13,38 @@
     </div>
 
     <section class="about">
-      <div class="about-content">
-        <h2>About</h2>
-        <p>
-          This website provides information about the top 10 most popular
-          movies, allowing users to explore each film in more detail, including
-          its synopsis, cast, and ratings.
-        </p>
-        <p>
-          When you select a movie, the site also shows a list of similar titles,
-          helping you discover more films that match your interests. The goal is
-          to offer an engaging and easy way to explore and learn more about
-          trending movies.
-        </p>
+      <div class="about-wrapper">
+        <div class="about-image">
+          <img src="/assets/image/about.jpg" alt="About image" />
+        </div>
+        <div class="about-text">
+          <small>( ABOUT )</small>
+          <h2>EXPLORE, DISCOVER,<br />AND ENJOY CINEMA</h2>
+          <p>
+            This website provides information about the top 10 most popular
+            movies, allowing users to explore each film in more detail including
+            its synopsis, cast, and ratings.
+          </p>
+          <p>
+            When you select a movie, the site also shows a list of similar
+            titles, helping you discover more films that match your interests.
+            The goal is to offer an engaging and easy way to explore and learn
+            more about trending movies.
+          </p>
+        </div>
       </div>
     </section>
 
     <SectionFade>
       <div class="fade-group">
         <div class="item">
-          <h2>Popular Movies</h2>
+          <div class="scrolling-text">
+            <h2>
+              POPULAR MOVIES — POPULAR MOVIES — POPULAR MOVIES — POPULAR MOVIES
+              — POPULAR MOVIES — POPULAR MOVIES
+            </h2>
+          </div>
+
           <div class="grid">
             <ClientOnly>
               <MovieCard
@@ -100,32 +112,48 @@ onMounted(() => {
 });
 
 onMounted(() => {
-  gsap.from(".about-content", {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(".about-wrapper", {
     scrollTrigger: {
       trigger: ".about",
       start: "top 80%",
       toggleActions: "play none none reverse",
     },
     opacity: 0,
-    y: 100,
+    y: 80,
     duration: 1.2,
     ease: "power3.out",
   });
 
-  gsap.from(".about-content h2", {
+  gsap.from(".about-image", {
     scrollTrigger: {
-      trigger: ".about-content",
+      trigger: ".about",
       start: "top 85%",
+      toggleActions: "play none none reverse",
     },
+    x: -100,
     opacity: 0,
-    y: 40,
-    duration: 0.8,
+    duration: 1.2,
+    ease: "power3.out",
+  });
+
+  gsap.from(".about-text", {
+    scrollTrigger: {
+      trigger: ".about",
+      start: "top 85%",
+      toggleActions: "play none none reverse",
+    },
+    x: 100,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power3.out",
     delay: 0.2,
   });
 
-  gsap.from(".about-content p", {
+  gsap.from(".about-text p, .about-text small, .about-text h2", {
     scrollTrigger: {
-      trigger: ".about-content",
+      trigger: ".about-text",
       start: "top 85%",
     },
     opacity: 0,
@@ -228,36 +256,99 @@ h1 {
 }
 
 .about {
-  background: #0b0c10;
-  color: #fff;
+  background-color: rgba(115, 45, 61, 0.5);
+  color: #cdd4ff;
   padding: 6rem 2rem;
-  text-align: center;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.about-content {
-  max-width: 800px;
-  padding: 4rem ;
-  background-color: rgba(115, 45, 61, 0.9);
-  margin: 0 auto;
-  border-radius: 20px;
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1100px;
+  width: 100%;
 }
 
-.about h2 {
-  font-size: 2.5rem;
-  margin-top: 0;
-  margin-bottom: 1.2rem;
-  color: #df9f97;
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-.about p {
-  font-size: 1.1rem;
+.about-text small {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #e7d39d;
+}
+
+.about-text h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1rem 0;
+  color: #e7d39d;
+}
+
+.about-text p {
+  font-size: 1.05rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.85);
-  margin-top: 1rem;
+  max-width: 420px;
+}
+
+@media (max-width: 900px) {
+  .about-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .about-text p {
+    margin: 0 auto;
+  }
 }
 
 .item h2 {
   color: rgba(115, 45, 61, 0.9);
+}
+
+.scrolling-text {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.scrolling-text h2 {
+  display: inline-block;
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e7d39d;
+  animation: scrollText 20s linear infinite;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .scrolling-text h2 {
+    font-size: 2rem;
+  }
 }
 </style>
