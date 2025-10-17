@@ -4,9 +4,9 @@
       class="hero"
       :style="{
         backgroundImage: `linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.7),
-          rgba(0, 0, 0, 1)
+        to bottom,
+        rgba(0, 0, 0, 0.6) 100%,
+        rgba(115, 45, 61, 0.7) 100%
         ), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
       }"
     >
@@ -14,10 +14,61 @@
         <div class="hero-content">
           <h1>{{ movie.title }}</h1>
           <div class="meta">
-            <span>{{ movie.release_date?.slice(0, 4) }}</span>
-            <span> • {{ movie.runtime }} min</span>
-            <span> • ⭐ {{ movie.vote_average.toFixed(1) }}</span>
+            <span class="meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z"
+                />
+              </svg>
+              {{ movie.release_date?.slice(0, 4) }}
+            </span>
+
+            <span class="meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              {{ movie.runtime }} min
+            </span>
+
+            <span class="meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                />
+              </svg>
+              {{ movie.vote_average.toFixed(1) }}
+            </span>
           </div>
+
           <p>{{ movie.overview }}</p>
           <div class="buttons">
             <button class="back-btn" @click="$router.back()">
@@ -129,9 +180,26 @@ onMounted(async () => {
   margin-bottom: 0.5rem;
 }
 .meta {
-  font-size: 0.8rem;
-  opacity: 0.7;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+}
+
 .hero p {
   font-size: 0.8rem;
   line-height: 1.6;
@@ -214,9 +282,9 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid rgba(115, 45, 61, 0.9);
-  background: transparent;
-  color: rgba(115, 45, 61, 0.9);
+  border : 0;
+  background: rgb(115, 45, 61);
+  color: #e7d39d;
   padding: 0.8rem 1.5rem;
   border-radius: 6px;
   font-weight: 600;
@@ -225,11 +293,11 @@ onMounted(async () => {
 }
 
 .back-btn:hover {
-  background: rgba(115, 45, 61, 0.9);
-  color: white;
+  background: #e7d39d;
+  color: rgb(115, 45, 61);
 }
 
-.back-btn svg {
+svg {
   width: 20px;
   height: 20px;
 }
@@ -239,8 +307,8 @@ section {
 }
 
 .similar h2 {
-  font-size: 1.4em;
-  color: rgba(115, 45, 61, 0.9);
+  font-size: 1.5em;
+  color: #e7d39d;
   margin-bottom: 1rem;
 }
 
