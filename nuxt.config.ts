@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      movieApiKey: import.meta.env.NUXT_PUBLIC_MOVIE_API_KEY,
+    
     },
   },
 });

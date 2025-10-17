@@ -73,7 +73,8 @@ const carousel = ref(null);
 const cards = ref([]);
 
 const headers = {
-  Authorization: "Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}",
+  Authorization:
+    "Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}",
   accept: "application/json",
 };
 
@@ -109,7 +110,7 @@ onMounted(async () => {
 <style scoped>
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100vh; 
   background-size: cover;
   background-position: center;
   display: flex;
@@ -183,7 +184,7 @@ onMounted(async () => {
     padding: 2rem 2rem;
   }
 
-  .hero-content {
+  .hero-content{
     max-width: 300px;
   }
 
@@ -205,13 +206,14 @@ onMounted(async () => {
   }
 }
 
+
 .buttons {
   margin-top: 1.2rem;
 }
 .back-btn {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: center; 
+  gap: 0.5rem; 
   border: 1px solid rgba(115, 45, 61, 0.9);
   background: transparent;
   color: rgba(115, 45, 61, 0.9);
@@ -232,7 +234,7 @@ onMounted(async () => {
   height: 20px;
 }
 
-section {
+section{
   padding: 0;
 }
 
@@ -256,21 +258,21 @@ section {
 .movie-card {
   flex: 0 0 auto;
   width: 150px;
-  height: 195px;
+  height: 195px; 
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.6s ease;
   opacity: 0;
   transform: translateY(40px);
   scroll-snap-align: start;
-  overflow: hidden;
+  overflow: hidden; 
   border-radius: 10px;
-  background: #1f2833;
+  background: #1f2833; 
 }
 
 .movie-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; 
   border-radius: 10px;
 }
 
@@ -291,6 +293,6 @@ section {
 .loading {
   text-align: center;
   padding: 4rem;
-  color: rgba(115, 45, 61, 0.9);
+  color:  rgba(115, 45, 61, 0.9);
 }
 </style>
