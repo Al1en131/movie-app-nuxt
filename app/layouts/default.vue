@@ -1,13 +1,7 @@
 <template>
   <div>
-    <header
-      class="p-4 flex justify-between items-center border-b border-gray-700"
-    >
-      <NuxtLink to="/">🎬 MovieApp</NuxtLink>
-      <nav>
-        <NuxtLink to="/" class="mr-4">Home</NuxtLink>
-        <!-- <NuxtLink to="/about/1">About</NuxtLink> -->
-      </nav>
+    <header class="header">
+      <NuxtLink to="/" class="logo">Screenify</NuxtLink>
     </header>
 
     <transition name="page" mode="out-in">
@@ -17,8 +11,28 @@
 </template>
 
 <style scoped>
-header a:hover {
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: transparent; 
+  z-index: 5; 
+}
+
+.logo {
+  text-decoration: none;
+  color: #66fcf1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
   opacity: 0.7;
-  transition: 0.3s;
 }
 </style>
