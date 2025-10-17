@@ -178,12 +178,12 @@ onMounted(() => {
 .hero {
   position: relative;
   text-align: center;
-  padding: 15rem 1rem;
+  padding: 12rem 1rem;
   color: #e0d4d4;
   background: linear-gradient(
       180deg,
       rgba(11, 12, 16, 0.9),
-      rgba(115, 45, 61, 0.8)
+      rgba(115, 45, 61, 0.6)
     ),
     url("/assets/image/hero-bg.jpg") center/cover no-repeat;
   background-attachment: fixed;
