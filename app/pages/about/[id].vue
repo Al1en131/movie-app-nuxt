@@ -12,14 +12,27 @@
         <p>{{ movie.overview }}</p>
       </div>
     </div>
+
+    <div v-else>
+      <p>Loading movie details...</p>
+    </div>
   </div>
 </template>
 
 <script setup>
+import { useRoute } from "vue-router";
+
 const route = useRoute();
-const config = useRuntimeConfig();
+
 const { data: movie } = await useFetch(
-  `https://api.themoviedb.org/3/movie/${route.params.id}?language=en-US`
+  `https://api.themoviedb.org/3/movie/${route.params.id}?language=en-US`,
+  {
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YmRhMDQ0MGZmYmI2NmNlMzRiZjMyMWJkYzdhYWViMSIsIm5iZiI6MTc2MDY1MTMxMC43MTcsInN1YiI6IjY4ZjE2ODJlNjQ2MDNiMWQxNGUyYmRkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.on6Ucx3IVRby1IPJtb1gWOgQCw0CD9wdd9iw5nS0LHU",
+      accept: "application/json",
+    },
+  }
 );
 </script>
 

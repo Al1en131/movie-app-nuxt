@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import MovieCard from "~/components/MovieCard.vue";
 import { ref, onMounted } from "vue";
 
 const movies = ref([]);
