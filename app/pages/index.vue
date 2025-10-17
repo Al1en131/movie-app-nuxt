@@ -2,16 +2,32 @@
   <div>
     <div class="hero">
       <div class="hero-content">
-        <h5>Stream. Discover. Enjoy.</h5>
-        <h1>Your Gateway to Unlimited Entertainment</h1>
+        <h5>Discover the Best of Cinema</h5>
+        <h1>Top 10 Popular Movies</h1>
         <p>
-          Explore a world where every story comes to life — from blockbuster
-          movies to hidden gems and trending shows. Discover your next favorite
-          title and dive into unforgettable moments, all in one seamless
-          experience.
+          Explore the 10 most popular movies right now, complete with essential
+          details like overview, cast, and ratings. Click on any movie to see
+          more information and discover similar titles you might enjoy.
         </p>
       </div>
     </div>
+
+    <section class="about">
+      <div class="about-content">
+        <h2>About This Website</h2>
+        <p>
+          This website provides information about the top 10 most popular
+          movies, allowing users to explore each film in more detail, including
+          its synopsis, cast, and ratings.
+        </p>
+        <p>
+          When you select a movie, the site also shows a list of similar titles,
+          helping you discover more films that match your interests. The goal is
+          to offer an engaging and easy way to explore and learn more about
+          trending movies.
+        </p>
+      </div>
+    </section>
 
     <SectionFade>
       <div class="fade-group">
@@ -35,7 +51,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const movies = ref([]);
 
@@ -45,7 +64,7 @@ onMounted(async () => {
     {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YmRhMDQ0MGZmYmI2NmNlMzRiZjMyMWJkYzdhYWViMSIsIm5iZiI6MTc2MDY1MTMxMC43MTcsInN1YiI6IjY4ZjE2ODJlNjQ2MDNiMWQxNGUyYmRkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.on6Ucx3IVRby1IPJtb1gWOgQCw0CD9wdd9iw5nS0LHU",
+          "Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}",
         accept: "application/json",
       },
     }
@@ -81,13 +100,48 @@ onMounted(() => {
 });
 
 onMounted(() => {
-  const lenis = new Lenis();
+  gsap.from(".about-content", {
+    scrollTrigger: {
+      trigger: ".about",
+      start: "top 80%",
+      toggleActions: "play none none reverse",
+    },
+    opacity: 0,
+    y: 100,
+    duration: 1.2,
+    ease: "power3.out",
+  });
 
+  gsap.from(".about-content h2", {
+    scrollTrigger: {
+      trigger: ".about-content",
+      start: "top 85%",
+    },
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    delay: 0.2,
+  });
+
+  gsap.from(".about-content p", {
+    scrollTrigger: {
+      trigger: ".about-content",
+      start: "top 85%",
+    },
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 0.3,
+  });
+});
+
+onMounted(() => {
+  const lenis = new Lenis();
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
-
   requestAnimationFrame(raf);
 });
 </script>
@@ -97,11 +151,11 @@ onMounted(() => {
   position: relative;
   text-align: center;
   padding: 15rem 1rem;
-  color: #fff;
+  color: #e0d4d4;
   background: linear-gradient(
       180deg,
       rgba(11, 12, 16, 0.9),
-      rgba(31, 40, 51, 0.9)
+      rgba(115, 45, 61, 0.8)
     ),
     url("/assets/image/hero-bg.jpg") center/cover no-repeat;
   background-attachment: fixed;
@@ -119,19 +173,22 @@ onMounted(() => {
   margin: 1rem auto 0;
   line-height: 1.7;
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
+  z-index: 5;
+  color: #e0d4d4;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 h5 {
   margin: 0 0 0.5rem 0;
   font-size: 1.6rem;
+  z-index: 5;
 }
 
 h1 {
   font-size: 4rem;
   line-height: 1.2;
   margin: 0;
+  z-index: 5;
 }
 
 .grid {
@@ -158,6 +215,7 @@ h1 {
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
 .visible .item {
   opacity: 1;
   transform: translateY(0);
@@ -167,5 +225,35 @@ h1 {
 }
 .visible .item:nth-child(3) {
   transition-delay: 0.4s;
+}
+
+.about {
+  background: #0b0c10;
+  color: #fff;
+  padding: 6rem 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: rgba(115, 45, 61, 0.9);
+}
+
+.about p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1rem;
+}
+
+.item h2 {
+  color: rgba(115, 45, 61, 0.9);
 }
 </style>
